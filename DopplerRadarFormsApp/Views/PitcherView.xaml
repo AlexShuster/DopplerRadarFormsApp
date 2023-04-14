@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DopplerRadarFormsApp.Views.PitcherView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0"
+                       Text="Pitchers"/>
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Text="Name:"/>
+                <Picker Grid.Row="1"
+                        Grid.Column="1"
+                        ItemsSource="{Binding Pitchers}"/>
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       Text="Handedness:"/>
+                <Label Grid.Row="2"
+                       Grid.Column="1"
+                       Text="{Binding Handedness}"/>
+                <Label Grid.Row="3"
+                       Grid.Column="0"
+                       Text="Experience Level:"/>
+                <Label Grid.Row="3"
+                       Grid.Column="1"
+                       Text="{Binding ExperienceLevel}"/>
+                <Button Grid.Row="4"
+                        Text="New Pitcher"
+                        Command="{Binding AddCommand}"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
