@@ -12,6 +12,12 @@
 
   <ItemGroup>
     <PackageReference Include="FreshMvvm" Version="4.0.1" />
+    <PackageReference Include="OxyPlot.Core" Version="2.1.2" />
+    <PackageReference Include="OxyPlot.Xamarin.Forms" Version="2.1.0" />
+    <PackageReference Include="Syncfusion.Licensing" Version="21.1.39" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="21.1.39" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="21.1.39" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChat" Version="21.1.39" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>

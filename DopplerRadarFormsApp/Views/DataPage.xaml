@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DopplerRadarFormsApp.Views.DataPage">
+             x:Class="DopplerRadarFormsApp.Views.DataPage"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="10">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition />
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="250"/>
+                    <RowDefinition Height="250"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -23,25 +23,28 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Row="0"
+                        Grid.ColumnSpan="6"
                         HorizontalOptions="CenterAndExpand"
-                        Text="Start Tracking Pitches"
+                        Text="Collect Pitch Data"
                         Command="{Binding StartCommand}"/>
                 <Label Grid.Row="1"
-                       Grid.Column="3"
+                       Grid.Column="2"
+                       Grid.ColumnSpan="3"
                        Text="Pitcher:"/>
                 <Picker Grid.Row="1"
-                        Grid.Column="4"
+                        Grid.Column="3"
+                        Grid.ColumnSpan="2"
                         ItemsSource="{Binding PitcherList}"
                         SelectedItem="{Binding PitcherName}"/>
                 <Label Grid.Row="2"
                        Grid.Column="0"
-                       Text="Speed:"/>
+                       Text="Speed (mph):"/>
                 <Label Grid.Row="2"
                        Grid.Column="1"
                        Text="{Binding PitchSpeed}"/>
                 <Label Grid.Row="2"
                        Grid.Column="2"
-                       Text="Spin:"/>
+                       Text="Spin (rpm):"/>
                 <Label Grid.Row="2"
                        Grid.Column="3"
                        Text="{Binding SpinRate}"/>
@@ -51,17 +54,65 @@
                 <Label Grid.Row="2"
                        Grid.Column="5"
                        Text="{Binding PitchType}"/>
-                <Label Grid.Row="3"
-                       Text="Speed"/>
-                <Label Grid.Row="5"
-                       Text="Spin"/>
-                <Button Grid.Row="6"
+                <chart:SfChart Grid.Row="3"
+                               Grid.ColumnSpan="6">
+                    <chart:SfChart.Title>
+                        <chart:ChartTitle Text="Speed" />
+                    </chart:SfChart.Title>
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:NumericalAxis Minimum="0" Interval="1">
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Pitch Number" />
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.PrimaryAxis>
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis Minimum="10" Maximum="110">
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Speed (mph)" />
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.SecondaryAxis>
+                    <chart:LineSeries ItemsSource="{Binding SpeedData}" YBindingPath="YValue" XBindingPath="XValue">
+                        <chart:LineSeries.DataMarker>
+                            <chart:ChartDataMarker MarkerType="Square" 
+                                                   MarkerHeight="10"
+                                                   MarkerWidth="10"/>
+                        </chart:LineSeries.DataMarker>
+                    </chart:LineSeries>
+                </chart:SfChart>
+                <chart:SfChart Grid.Row="4"
+                               Grid.ColumnSpan="6">
+                    <chart:SfChart.Title>
+                        <chart:ChartTitle Text="Spin" />
+                    </chart:SfChart.Title>
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:NumericalAxis>
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Pitch Number" />
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.PrimaryAxis>
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis Minimum="10" Maximum="5000">
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="Spin Rate (rpm)" />
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfChart.SecondaryAxis>
+                    <chart:LineSeries ItemsSource="{Binding SpinData}" YBindingPath="YValue" XBindingPath="XValue">
+                        <chart:LineSeries.DataMarker>
+                            <chart:ChartDataMarker MarkerType="Square" 
+                                                   MarkerHeight="10"
+                                                   MarkerWidth="10"/>
+                        </chart:LineSeries.DataMarker>
+                    </chart:LineSeries>
+                </chart:SfChart>
+                <Button Grid.Row="5"
+                        Grid.ColumnSpan="6"
+                        HorizontalOptions="CenterAndExpand"
                         Text="Add New Pitcher"
                         Command="{Binding AddCommand}"/>
-
-
-
-
             </Grid>
         </StackLayout>
     </ContentPage.Content>

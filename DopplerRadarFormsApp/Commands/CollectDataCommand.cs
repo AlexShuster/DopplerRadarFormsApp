@@ -1,6 +1,9 @@
 ﻿using Android.OS;
 using DopplerRadarFormsApp.Models;
 using DopplerRadarFormsApp.ViewModels;
+using OxyPlot;
+using OxyPlot.Series;
+using Syncfusion.SfChart.XForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +39,11 @@ namespace DopplerRadarFormsApp.Commands
                     pitch._pitchType = (PitchType)Enum.ToObject(typeof(PitchType), pitchInt);
 
                     _viewModel.PitchType = pitch._pitchType.ToString();
+
+                    // Display on Chart
+                    _viewModel.SpeedData.Add(new ChartDataPoint(_viewModel.SpeedData.Count, pitch.speed));
+                    _viewModel.SpinData.Add(new ChartDataPoint(_viewModel.SpinData.Count, pitch.spin));
+
                 }
             }
         }
@@ -44,8 +52,6 @@ namespace DopplerRadarFormsApp.Commands
         {
             _handler = handler;
             _viewModel = viewModel;
-
-            
         }
     }
 }

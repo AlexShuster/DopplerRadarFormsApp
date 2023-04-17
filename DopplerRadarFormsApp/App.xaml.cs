@@ -2,6 +2,8 @@
 using DopplerRadarFormsApp.Stores;
 using DopplerRadarFormsApp.ViewModels;
 using DopplerRadarFormsApp.Views;
+using OxyPlot.Xamarin.Forms;
+using OxyPlot;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -22,11 +24,6 @@ namespace DopplerRadarFormsApp
             {
                 BindingContext = new MainViewModel(_handler)
             };
-
-            //MainPage = new NavigationPage(new MainPage())
-            //{
-            //    BindingContext = new MainViewModel(_handler, _pitcher)
-            //};
         }
 
         protected override void OnStart()

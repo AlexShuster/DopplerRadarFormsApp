@@ -1,5 +1,8 @@
 ﻿using DopplerRadarFormsApp.Commands;
 using DopplerRadarFormsApp.Models;
+using OxyPlot;
+using OxyPlot.Series;
+using Syncfusion.SfChart.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,6 +27,34 @@ namespace DopplerRadarFormsApp.ViewModels
             {
                 _pitcherList = value;
                 OnPropertyChanged(nameof(PitcherList));
+            }
+        }
+
+        private ObservableCollection<ChartDataPoint> _speedData;
+        public ObservableCollection<ChartDataPoint> SpeedData
+        {
+            get
+            {
+                return _speedData;
+            }
+            set
+            {
+                _speedData = value;
+                OnPropertyChanged(nameof(SpeedData));
+            }
+        }
+
+        private ObservableCollection<ChartDataPoint> _spinData;
+        public ObservableCollection<ChartDataPoint> SpinData
+        {
+            get
+            {
+                return _spinData;
+            }
+            set
+            {
+                _spinData = value;
+                OnPropertyChanged(nameof(SpinData));
             }
         }
 
@@ -92,6 +123,8 @@ namespace DopplerRadarFormsApp.ViewModels
 
             PitcherList = new ObservableCollection<string>();
             Pitchers = new List<Pitcher>();
+            SpeedData = new ObservableCollection<ChartDataPoint>();
+            SpinData = new ObservableCollection<ChartDataPoint>();
 
             StartCommand = new CollectDataCommand(_handler, this);
             AddCommand = new PitcherPageCommand(this);

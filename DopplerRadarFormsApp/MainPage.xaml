@@ -6,15 +6,3 @@
             x:Class="DopplerRadarFormsApp.MainPage">
     <views:ScanPage BindingContext="{Binding CurrentViewModel}"/>
 </TabbedPage>
-<!--<TabbedPage.Resources>
-        <DataTemplate DataType="{x:Type vms:ScanViewModel}">
-            <views:ScanPage/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type vms:DataViewModel}">
-            <views:DataPage/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type vms:PitcherViewModel}">
-            <views:PitcherView/>
-        </DataTemplate>
-            
-    </TabbedPage.Resources>-->

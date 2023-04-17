@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DopplerRadarFormsApp.Views.PitcherView">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="10">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -18,7 +18,10 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0"
-                       Text="Pitchers"/>
+                       Grid.ColumnSpan="2"
+                       HorizontalOptions="CenterAndExpand"
+                       Text="Pitchers"
+                       FontSize="Large"/>
                 <Label Grid.Row="1"
                        Grid.Column="0"
                        Text="Pitcher:"/>
@@ -28,7 +31,7 @@
                         SelectedItem="{Binding SelectedPitcher}"/>
                 <Label Grid.Row="2"
                        Grid.Column="0"
-                       Text="Name"/>
+                       Text="Name:"/>
                 <Entry Grid.Row="2"
                        Grid.Column="1"
                        Text="{Binding Name}"/>
@@ -47,6 +50,8 @@
                        ItemsSource="{Binding ExperienceLevel}"
                        SelectedItem="{Binding SelectedXP}"/>
                 <Button Grid.Row="5"
+                        Grid.ColumnSpan="2"
+                        HorizontalOptions="CenterAndExpand"
                         Text="New Pitcher"
                         Command="{Binding AddCommand}"/>
             </Grid>
