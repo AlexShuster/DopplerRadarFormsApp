@@ -7,8 +7,8 @@ namespace DopplerRadarFormsApp.Models
 {
     public enum Handedness
     {
-        Left,
-        Right
+        Left = 0,
+        Right = 1
     }
 
     public enum Experience
@@ -25,6 +25,37 @@ namespace DopplerRadarFormsApp.Models
         College = 19,
         Pro = 20
     }
+
+    public class PitchDict
+    {
+        public Dictionary<string, Experience> ExperienceMap => new Dictionary<string, Experience>()
+        {
+            {"Age 10", Experience.Age10},
+            { "Age 11", Experience.Age11 },
+            { "Age 12", Experience.Age12 },
+            { "Age 13", Experience.Age13 },
+            { "Age 14", Experience.Age14 },
+            { "Age 15", Experience.Age15 },
+            { "Age 16", Experience.Age16 },
+            { "Age 17", Experience.Age17 },
+            { "Age 18", Experience.Age18 },
+            { "College", Experience.College },
+            { "Pro", Experience.Pro },
+        };
+
+        public Dictionary<string, PitchType> PitchMap => new Dictionary<string, PitchType>()
+        {
+            {"Change Up", PitchType.ChangeUp },
+            {"Curve Ball", PitchType.CurveBall },
+            {"Cutter", PitchType.Cutter },
+            {"Four-Seam Fastball", PitchType.FourSeamFastball },
+            {"Splitter", PitchType.Splitter },
+            {"Sinker", PitchType.Sinker },
+            {"Slider", PitchType.Slider }
+        };
+    }
+        
+
     public class Pitcher
     {
         public string _name;
@@ -32,8 +63,12 @@ namespace DopplerRadarFormsApp.Models
         public Experience _experience;
         public ObservableCollection<Pitch> Pitches;
 
-        public Pitcher()
+        public Pitcher(string name, Handedness handedness, Experience experience)
         {
+            _name = name;
+            _handedness = handedness;
+            _experience = experience;
+
             Pitches = new ObservableCollection<Pitch>();
         }
     }

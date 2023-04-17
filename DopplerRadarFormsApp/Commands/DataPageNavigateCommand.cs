@@ -4,11 +4,16 @@ using System.Text;
 
 namespace DopplerRadarFormsApp.Commands
 {
-    internal class DisconnectCommand : CommandBase
+    internal class DataPageNavigateCommand : CommandBase
     {
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            
         }
+        public DataPageNavigateCommand() 
+        {
+            
+        }
+
     }
 }

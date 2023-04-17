@@ -4,7 +4,7 @@
             xmlns:views="clr-namespace:DopplerRadarFormsApp.Views"
             xmlns:vms="clr-namespace:DopplerRadarFormsApp.ViewModels"
             x:Class="DopplerRadarFormsApp.MainPage">
-    <views:DataPage BindingContext="{Binding CurrentViewModel}"/>
+    <views:ScanPage BindingContext="{Binding CurrentViewModel}"/>
 </TabbedPage>
 <!--<TabbedPage.Resources>
         <DataTemplate DataType="{x:Type vms:ScanViewModel}">

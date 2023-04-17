@@ -11,22 +11,22 @@ namespace DopplerRadarFormsApp
     public partial class App : Application
     {
         private readonly BluetoothHandlerModel _handler;
-        private readonly Pitcher _pitcher;
         public readonly NavigationStore _navigationStore;
         public App()
         {
             InitializeComponent();
 
             _handler = new BluetoothHandlerModel();
-            _pitcher = new Pitcher();
 
-            MainPage = new MainPage()
+            MainPage = new NavigationPage(new MainPage())
             {
-                BindingContext = new MainViewModel(_handler, _pitcher)
+                BindingContext = new MainViewModel(_handler)
             };
 
-            _navigationStore = new NavigationStore();
-            _navigationStore.CurrentViewModel = new ScanViewModel(_handler);
+            //MainPage = new NavigationPage(new MainPage())
+            //{
+            //    BindingContext = new MainViewModel(_handler, _pitcher)
+            //};
         }
 
         protected override void OnStart()

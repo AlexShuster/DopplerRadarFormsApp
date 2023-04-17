@@ -10,8 +10,11 @@ namespace DopplerRadarFormsApp.ViewModels
 {
     public class PitcherViewModel : ViewModelBase
     {
-        private ObservableCollection<Pitcher> _pitcherList;
-        public ObservableCollection<Pitcher> PitcherList
+        public List<Pitcher> Pitchers;
+        private DataViewModel _dataViewModel;
+
+        private ObservableCollection<string> _pitcherList;
+        public ObservableCollection<string> PitcherList
         {
             get
             {
@@ -24,8 +27,36 @@ namespace DopplerRadarFormsApp.ViewModels
             }
         }
 
-        private string _handedness;
-        public string Handedness
+        private string _selectedPitcher;
+        public string SelectedPitcher
+        {
+            get
+            {
+                return _selectedPitcher;
+            }
+            set
+            {
+                _selectedPitcher = value;
+                OnPropertyChanged(nameof(SelectedPitcher));
+            }
+        }
+
+        private string _name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        private ObservableCollection<string> _handedness;
+        public ObservableCollection<string> Handedness
         {
             get
             {
@@ -38,8 +69,24 @@ namespace DopplerRadarFormsApp.ViewModels
             }
         }
 
-        private string _experienceLevel;
-        public string ExperienceLevel
+        private string _selectedHand = "Right";
+        public string SelectedHand
+        {
+            get
+            {
+                return _selectedHand;
+            }
+            set
+            {
+                _selectedHand = value;
+                OnPropertyChanged(nameof(SelectedHand));
+            }
+        }
+
+
+
+        private ObservableCollection<string> _experienceLevel;
+        public ObservableCollection<string> ExperienceLevel
         {
             get
             {
@@ -52,11 +99,49 @@ namespace DopplerRadarFormsApp.ViewModels
             }
         }
 
+        private string _selectedXP = "College";
+        public string SelectedXP
+        {
+            get
+            {
+                return _selectedXP;
+            }
+            set
+            {
+                _selectedXP = value;
+                OnPropertyChanged(nameof(SelectedXP));
+            }
+        }
+
+
         public ICommand AddCommand { get; }
 
-        public PitcherViewModel()
+        public PitcherViewModel(DataViewModel dataViewModel)
         {
-            AddCommand = new NewPitcherCommand();
+            _dataViewModel = dataViewModel;
+
+            PitcherList = new ObservableCollection<string>();
+            Pitchers = new List<Pitcher>();
+
+            Handedness = new ObservableCollection<string>();
+            Handedness.Add("Left");
+            Handedness.Add("Right");
+
+            ExperienceLevel = new ObservableCollection<string>();
+            ExperienceLevel.Add("Age 10");
+            ExperienceLevel.Add("Age 11");
+            ExperienceLevel.Add("Age 12");
+            ExperienceLevel.Add("Age 13");
+            ExperienceLevel.Add("Age 14");
+            ExperienceLevel.Add("Age 15");
+            ExperienceLevel.Add("Age 16");
+            ExperienceLevel.Add("Age 17");
+            ExperienceLevel.Add("Age 18");
+            ExperienceLevel.Add("College");
+            ExperienceLevel.Add("Pro");
+
+            AddCommand = new NewPitcherCommand(this, _dataViewModel);
+
         }
 
     }

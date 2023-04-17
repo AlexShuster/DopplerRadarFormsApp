@@ -12,13 +12,10 @@ namespace DopplerRadarFormsApp.ViewModels
         BluetoothHandlerModel _handler;
         public ICommand ScanCommand { get; }
 
-        public ICommand StopCommand { get; }
-
         public ScanViewModel(BluetoothHandlerModel handler)
         {
             _handler = handler;
             ScanCommand = new ConnectCommand(_handler);
-            StopCommand = new DisconnectCommand();
         }
     }
 }

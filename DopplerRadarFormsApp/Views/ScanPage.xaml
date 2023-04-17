@@ -7,7 +7,6 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
             </Grid>
             <Button Text="Connect to DopplerRadar"
@@ -15,10 +14,6 @@
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                     Command="{Binding ScanCommand}"/>
-            <Button Text="Disconnect from DopplerRadar"
-                    Grid.Row="1"
-                    VerticalOptions="Center"
-                    Command="{Binding StopCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

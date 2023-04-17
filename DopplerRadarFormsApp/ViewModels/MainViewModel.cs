@@ -12,16 +12,13 @@ namespace DopplerRadarFormsApp.ViewModels
     internal class MainViewModel : ViewModelBase
     {
         BluetoothHandlerModel _handler;
-        Pitcher _pitcher;
         private readonly NavigationStore _navigationStore;
-        public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
+        public ViewModelBase CurrentViewModel { get; }
 
-        public MainViewModel(BluetoothHandlerModel handler, Pitcher pitcher)
+        public MainViewModel(BluetoothHandlerModel handler)
         {
             _handler = handler;
-            _pitcher = pitcher;
-            _navigationStore= new NavigationStore();
-            _navigationStore.CurrentViewModel = new DataViewModel(_handler, _pitcher);
+            CurrentViewModel = new ScanViewModel(_handler);
         }
     }
 }

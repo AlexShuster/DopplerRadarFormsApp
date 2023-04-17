@@ -11,6 +11,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -20,23 +21,32 @@
                        Text="Pitchers"/>
                 <Label Grid.Row="1"
                        Grid.Column="0"
-                       Text="Name:"/>
+                       Text="Pitcher:"/>
                 <Picker Grid.Row="1"
                         Grid.Column="1"
-                        ItemsSource="{Binding Pitchers}"/>
+                        ItemsSource="{Binding PitcherList}"
+                        SelectedItem="{Binding SelectedPitcher}"/>
                 <Label Grid.Row="2"
+                       Grid.Column="0"
+                       Text="Name"/>
+                <Entry Grid.Row="2"
+                       Grid.Column="1"
+                       Text="{Binding Name}"/>
+                <Label Grid.Row="3"
                        Grid.Column="0"
                        Text="Handedness:"/>
-                <Label Grid.Row="2"
+                <Picker Grid.Row="3"
                        Grid.Column="1"
-                       Text="{Binding Handedness}"/>
-                <Label Grid.Row="3"
+                       ItemsSource="{Binding Handedness}"
+                        SelectedItem="{Binding SelectedHand}"/>
+                <Label Grid.Row="4"
                        Grid.Column="0"
                        Text="Experience Level:"/>
-                <Label Grid.Row="3"
+                <Picker Grid.Row="4"
                        Grid.Column="1"
-                       Text="{Binding ExperienceLevel}"/>
-                <Button Grid.Row="4"
+                       ItemsSource="{Binding ExperienceLevel}"
+                       SelectedItem="{Binding SelectedXP}"/>
+                <Button Grid.Row="5"
                         Text="New Pitcher"
                         Command="{Binding AddCommand}"/>
             </Grid>

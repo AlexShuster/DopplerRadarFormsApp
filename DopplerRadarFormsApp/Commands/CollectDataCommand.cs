@@ -1,4 +1,5 @@
-﻿using DopplerRadarFormsApp.Models;
+﻿using Android.OS;
+using DopplerRadarFormsApp.Models;
 using DopplerRadarFormsApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,16 +16,36 @@ namespace DopplerRadarFormsApp.Commands
 
         public override void Execute(object parameter)
         {
-            _pitcher.Pitches.Add(_handler.Read());
-            _viewModel.PitchSpeed = Convert.ToInt32(_pitcher.Pitches.Last().speed);
-            _viewModel.SpinRate = Convert.ToInt32(_pitcher.Pitches.Last().spin);
+            var currentPitcher = _viewModel.Pitchers.FirstOrDefault(o => o._name == _viewModel.PitcherName);
+            if (currentPitcher != null)
+            {
+                _pitcher = currentPitcher;
+            }
+
+            var pitch = _handler.Read();
+            if (pitch != null)
+            {
+                _viewModel.PitchSpeed = Convert.ToInt32(pitch.speed);
+                _viewModel.SpinRate = Convert.ToInt32(pitch.spin);
+                if (_pitcher != null)
+                {
+                    _pitcher.Pitches.Add(pitch);
+                    PitchDict pitchDict = new PitchDict();
+                    int pitchInt = pitch.Identifier.predict_experience_seven_pitch(Convert.ToDouble(_pitcher._handedness), pitch.speed, pitch.spin, Convert.ToInt32(_pitcher._experience));
+
+                    pitch._pitchType = (PitchType)Enum.ToObject(typeof(PitchType), pitchInt);
+
+                    _viewModel.PitchType = pitch._pitchType.ToString();
+                }
+            }
         }
 
-        public CollectDataCommand(BluetoothHandlerModel handler, Pitcher pitcher, DataViewModel viewModel)
+        public CollectDataCommand(BluetoothHandlerModel handler, DataViewModel viewModel)
         {
             _handler = handler;
-            _pitcher = pitcher;
             _viewModel = viewModel;
+
+            
         }
     }
 }

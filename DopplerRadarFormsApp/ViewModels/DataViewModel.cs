@@ -2,6 +2,7 @@
 using DopplerRadarFormsApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 
@@ -9,8 +10,22 @@ namespace DopplerRadarFormsApp.ViewModels
 {
     public class DataViewModel : ViewModelBase
     {
-        private BluetoothHandlerModel _handler;
-        private Pitcher _pitcher;
+        public BluetoothHandlerModel _handler;
+        public List<Pitcher> Pitchers;
+
+        private ObservableCollection<string> _pitcherList;
+        public ObservableCollection<string> PitcherList
+        {
+            get
+            {
+                return _pitcherList;
+            }
+            set
+            {
+                _pitcherList = value;
+                OnPropertyChanged(nameof(PitcherList));
+            }
+        }
 
         private string _pitcherName;
         public string PitcherName
@@ -69,14 +84,17 @@ namespace DopplerRadarFormsApp.ViewModels
         }
 
         public ICommand StartCommand { get; }
-        public ICommand ConnectCommand { get; }
+        public ICommand AddCommand { get; }
 
-        public DataViewModel(BluetoothHandlerModel handler, Pitcher pitcher)
+        public DataViewModel(BluetoothHandlerModel handler)
         {
             _handler = handler;
-            _pitcher = pitcher;
-            StartCommand = new CollectDataCommand(_handler, _pitcher, this);
-            ConnectCommand = new ConnectCommand(_handler);
+
+            PitcherList = new ObservableCollection<string>();
+            Pitchers = new List<Pitcher>();
+
+            StartCommand = new CollectDataCommand(_handler, this);
+            AddCommand = new PitcherPageCommand(this);
         }
     }
 }

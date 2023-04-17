@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DopplerRadarFormsApp.Models
 {
-    internal class PitchIdentifier
+    public class PitchIdentifier
     {
         // Get Accuracy of Pitch Identifier
         public double getAccuracy(int[] y_pred, int[] y_test, int N)
@@ -24,6 +24,7 @@ namespace DopplerRadarFormsApp.Models
             //Console.WriteLine();
         }
 
+        // Use when MLB
         //1 = right, 0 = left
         //updated with offspeed = 0(Channgeup, Curveball, Slider, Splitter) && Fastball = 1(4-seam Fastball, Cutter, && Sinker)
         public int predict_two_pitch(double throwing_arm, double velocity, double spin_rate)
@@ -166,6 +167,7 @@ namespace DopplerRadarFormsApp.Models
             return pred;
         }
 
+        // Use when MLB
         // 0: ChangeUp, 1: Curveball, 2: Cutter, 3: 4-seam fastball, 4: Splitter, 5: Sinker, 6: Slider
         public int predict_seven_pitch(double throwing_arm, double velocity, double spin_rate)
         {
@@ -326,8 +328,8 @@ namespace DopplerRadarFormsApp.Models
         public int predict_experience_seven_pitch(double throwing_arm, double velocity, double spin_rate, int experience_level)
         {
             int[] votes = new int[21];
-            float[,] weights = new float[21, 3];
-            float[] bias = new float[21];
+            double[,] weights = new double[21, 3];
+            double[] bias = new double[21];
             if (experience_level == 10)
             {
                 //accuracy = 56%
